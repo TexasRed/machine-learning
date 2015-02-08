@@ -1,0 +1,19 @@
+
+Before pruning,  accuracy = 76.30%
+
+Post pruning, 1 st attempt:
+ L = 5 , K = 2 , accuracy = 76.35%
+
+Post pruning, 2 st attempt:
+ L = 10 , K = 5 , accuracy = 76.65%
+
+Post pruning, 3 st attempt:
+ L = 20 , K = 5 , accuracy = 77.70%
+
+Post pruning, 4 st attempt:
+ L = 50 , K = 2 , accuracy = 80.65%
+
+Post pruning, 5 st attempt:
+ L = 100 , K = 2 , accuracy = 79.70%
+
+The best decision tree among the 5 pruning attempts is saved in tree_4.txt accuracy = 0.8065
