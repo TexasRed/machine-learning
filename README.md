@@ -1,13 +1,12 @@
 # machine-learning
 Decision Tree
 ========================
-/** 
+
 * Name: Kai Huang
 * CS6375, Project 1
 * Section 003
 * Due Date: Sun, Feb 8th, 2015 11:59:00 PM CDT 
 * NetID   : kxh132430
-*/
 
 I. Purpose
 
@@ -80,8 +79,8 @@ The program will print the prediction accuracy before and after post pruning, as
 
 Note: 
 
-1.To export the decision tree, uncomment line 36 and 58 in main.py.
+1.To export the decision tree, uncomment line 37 and 59 in main.py.
 
-2.To print the decision tree before pruning, uncomment line 37 in main.py.
+2.To print the decision tree before pruning, uncomment line 38 in main.py.
 
 3.To switch data set, change the dataDir from './data1/' to './data2/'
