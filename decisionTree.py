@@ -59,8 +59,9 @@ class DecisionTree:
 	        filename : The filename of csv file that contains the training set.
 
 		"""
-	    # Parse the csv file that contains the training data, extract the attributes names, 
-	    # attribute values, and class values.
+
+		# Parse the csv file that contains the training data, extract the attributes names, 
+		# attribute values, and class values.
 		csvParser = CsvParser(filename)
 
 		self.attributeNames = csvParser.attributeNames
@@ -89,36 +90,37 @@ class DecisionTree:
 		    A decision tree that correctly classiJies the given Examples.
 
 		"""
-	    # If training Examples is empty, return null
+
+		# If training Examples is empty, return null
 		if len(Examples) == 0:
 			return None
 	    
-	    # Create a root node for the tree
+		# Create a root node for the tree
 		root = TreeNode(-1)
 	    
-	    # Calculate the entropy of the Examples
+		# Calculate the entropy of the Examples
 		Entropy = self.getEntropy(Examples, Target_Attribute)
 
 		# Let the label of the root node be the most common value of the
-	    # Target_Attribute in Examples
+		# Target_Attribute in Examples
 		root.label = self.getMostCommonValue(Target_Attribute)
 	    
-	    # If all Examples are positive, Return the single-node tree Root, with label = +
-	    # If all Examples are negative, Return the single-node tree Root, with label = -
-	    # If Attributes is empty, Return the single-node tree Root, with label = most common value 
-	    # of Target_Attribute in Examples
+		# If all Examples are positive, Return the single-node tree Root, with label = +
+		# If all Examples are negative, Return the single-node tree Root, with label = -
+		# If Attributes is empty, Return the single-node tree Root, with label = most common value 
+		# of Target_Attribute in Examples
 		if Entropy == 0 or len(Attributes) == 0:
 			return root
 
-	    # Otherwise, choose the attribute from Attributes that best* classifies Examples
+		# Otherwise, choose the attribute from Attributes that best* classifies Examples
 		else:
 			bestAttribute = self.chooseBestAttribute(Examples, Target_Attribute, Attributes, Entropy)
 	        
-	        # If all attributes have a split info of zero(cannot be further splited), reutrn Root
+			# If all attributes have a split info of zero(cannot be further splited), reutrn Root
 			if bestAttribute == -1:
 				return root
 
-	        # Otherwise, let bestAttribute be the decision attribute for Root
+			# Otherwise, let bestAttribute be the decision attribute for Root
 			root.val = bestAttribute
 
 			# Get the list of other attributes that may be tested by the learned decision tree.
@@ -156,7 +158,7 @@ class DecisionTree:
 
 
 		"""
-	    # Initialize the maximum Gain Ratio and best attribute as -1.
+		# Initialize the maximum Gain Ratio and best attribute as -1.
 		maxGainRatio = -1
 		bestAttribute = -1
 
@@ -167,7 +169,7 @@ class DecisionTree:
 			# Calculate the split information for each attribute
 			splitInfo = self.getSplitInfo(Examples, attribute)
             
-            # If the attribute can be further splited, calculate the gain ratio of the attribute
+			# If the attribute can be further splited, calculate the gain ratio of the attribute
 			if splitInfo > 0:
 				gainRatio = self.getInfoGain(Examples, Target_Attribute, Entropy, attribute) / splitInfo
 				# print '(X', str(unichr(66 + attribute)), ',', Decimal(gainRatio), ')'
@@ -177,7 +179,7 @@ class DecisionTree:
 		# print ']'
 		# print '--->>> X', str(unichr(66 + bestAttribute)), 'is selected!\n'
 
-        # Return the best attribute using Gain Ratio measure
+		# Return the best attribute using Gain Ratio measure
 		return bestAttribute
 
 	def getMostCommonValue(self, Target_Attribute):
@@ -213,16 +215,16 @@ class DecisionTree:
 		""" Split the training example by their values for a given attribute.
 
 		Args:
-		    Examples         : Examples are the training examples. 
-		    Target_Attribute : Target_Attribute is the attribute whose value is to be 
-		                       predicted by the tree. 
-		    attribute        : The attribute to be splited.
+			Examples         : Examples are the training examples. 
+			Target_Attribute : Target_Attribute is the attribute whose value is to be 
+			                   predicted by the tree. 
+			attribute        : The attribute to be splited.
 
 
 		Returns:
-		    Let Examples_vi be the subset of Examples that have value vi for the given attribute.
-            Let Target_vi be the subset of Target_Attribute that correpsonds to Examples_vi.
-            Return a list of tuples (Examples_vi, Target_vi).
+			Let Examples_vi be the subset of Examples that have value vi for the given attribute.
+			Let Target_vi be the subset of Target_Attribute that correpsonds to Examples_vi.
+			Return a list of tuples (Examples_vi, Target_vi).
 
 		"""
         # Split the training example by their values for a given attribute.
@@ -253,24 +255,25 @@ class DecisionTree:
             The split information for a given attribute. SplitInfo(S, A)
 
 		"""
-        # Count the total number of examples
+		
+		# Count the total number of examples
 		rows = len(Examples)
 
-        # Count the number of examples whose value for the given attribute is 0.
+		# Count the number of examples whose value for the given attribute is 0.
 		s0 = 0
 		for instance in Examples:
 		  if self.data[instance][attribute] == 0:
 		      s0 += 1
 
-        # Calculate the percentage of the examples whose value for a given attribute is 0 or 1.
+		# Calculate the percentage of the examples whose value for a given attribute is 0 or 1.
 		percentage_s0 = 1.0 * s0 / rows
 		percentage_s1 = 1 - percentage_s0
         
-        # Define log 0 = 0 
+		# Define log 0 = 0 
 		if percentage_s0 == 0 or percentage_s1 == 0:
 			return 0
 
-        # Return the split information
+		# Return the split information
 		return -(percentage_s0 * math.log(percentage_s0, 2) + percentage_s1 * math.log(percentage_s1, 2))
 
 	def getEntropy(self, Examples, Target_Attribute):
@@ -283,33 +286,34 @@ class DecisionTree:
 		                       predicted by the tree. 
 
 		Returns:
-            The entropy of the training examples.
+			The entropy of the training examples.
 
 		"""
-        # Count the total number of examples
+
+		# Count the total number of examples
 		rows = len(Examples)
 
-        # Count the number of examples whose class value is positive.
+		# Count the number of examples whose class value is positive.
 		pcount = 0
 		for i in range(len(Examples)):
 		  if Target_Attribute[i] == 1:
 		      pcount += 1
         
-        # Calculate the percentage of the examples whose class value is negative or positive.
+		# Calculate the percentage of the examples whose class value is negative or positive.
 		pos = 1.0 * pcount / rows
 		neg = 1 - pos
         
-        # Define log 0 = 0
+		# Define log 0 = 0
 		if pos == 0 or neg == 0:
 			return 0
 
-        # Return te entropy
+		# Return te entropy
 		return  - (pos * math.log(pos, 2) + neg * math.log(neg, 2))
 
 	def getInfoGain(self, Examples, Target_Attribute, Entropy, attribute):
 
 		"""Calculate the infomation gain of partitioning the training examples by the given attribute.
-		
+
 		Args:
 		    Examples         : Examples are the training examples. 
 		    Target_Attribute : Target_Attribute is the attribute whose value is to be 
@@ -318,22 +322,23 @@ class DecisionTree:
 		    attribute        : The attribute to be tested.		          
 
 		Returns:
-            The infomation gain of partitioning the training examples by the given attribute.
+			The infomation gain of partitioning the training examples by the given attribute.
 
 		"""
-        # Count the total number of examples
+
+		# Count the total number of examples
 		rows = len(Examples)
         
-        # Calculate the entropy for each Examples_vi whose value = vi
+		# Calculate the entropy for each Examples_vi whose value = vi
 		branch = self.split(Examples, Target_Attribute, attribute)
 		Entropy_v0 = self.getEntropy(branch[0][0], branch[0][1])
 		Entropy_v1 = self.getEntropy(branch[1][0], branch[1][1])
         
-        # Calculate the percentage for each Examples_vi whose value = vi in Examples
+		# Calculate the percentage for each Examples_vi whose value = vi in Examples
 		percentage_v0 = 1.0 * len(branch[0][0]) / rows
 		percentage_v1 = 1 - percentage_v0
         
-        # Return the information gain
+		# Return the information gain
 		infoGain = Entropy - percentage_v0 * Entropy_v0 - percentage_v1 * Entropy_v1
 		return infoGain
 
@@ -341,16 +346,17 @@ class DecisionTree:
 
 		"""Post prune the decision tree using two parameters L, K and the validation data.
         
-        Args:
-            L              : The number of attempts of post pruning attempt.
-            K              : The seed to generate a random number of nodes to be pruned.
-            validation_set : The validation data for post pruning.
-        
-        Returns:
-                bestTree : The best decision tree after post pruning.
+		Args:
+		    L              : The number of attempts of post pruning attempt.
+		    K              : The seed to generate a random number of nodes to be pruned.
+		    validation_set : The validation data for post pruning.
+
+		Returns:
+		        bestTree : The best decision tree after post pruning.
 
 		"""
-        # Let the best decision tree D_Best be the current decision tree
+
+		# Let the best decision tree D_Best be the current decision tree
 		bestTree = self.root
 
 		# Create a validator using the validation set to test decision tree models
@@ -365,8 +371,8 @@ class DecisionTree:
 
 			for j in range(1, M + 1):
 
-                # Let N denote the number of non-leaf nodes in the decision tree D'.
-                # Order the nodes in D' from 1 to N.
+				# Let N denote the number of non-leaf nodes in the decision tree D'.
+				# Order the nodes in D' from 1 to N.
 				nonLeafNodes = self.order(currTree)
 				N = len(nonLeafNodes) - 1
 
@@ -374,10 +380,10 @@ class DecisionTree:
 				if N <= 0:
 					return bestTree
                 
-                # Let P be a random number between 1 and N.
+				# Let P be a random number between 1 and N.
 				P = random.randint(1, N) 
                 
-                # Replace the subtree rooted at node P in D' by a leaf node
+				# Replace the subtree rooted at node P in D' by a leaf node
 				# Assign the majority class of the subset of the data at P 
 				# to the leaf node.
 				replaceNode = nonLeafNodes[P]
@@ -385,40 +391,38 @@ class DecisionTree:
 				replaceNode.left = None
 				replaceNode.right = None
 
-            # Evaluate the accuracy of D' on the validation set
-            
+			# Evaluate the accuracy of D' on the validation set
 			oldAccuracy = validator.calculateAccuracy(bestTree)
 			newAccuracy = validator.calculateAccuracy(currTree)
             
-            # If D' is more accurate than D_Best, replace D_Best by D'
+			# If D' is more accurate than D_Best, replace D_Best by D'
 			if newAccuracy >= oldAccuracy:
 			    bestTree = currTree
-        
-        # Update the decision tree to be D_Best and return D_Best 
+
+		# Update the decision tree to be D_Best and return D_Best 
 		self.root = bestTree
 		return bestTree
 
 	def order(self, root):
 
 		""" Order the non-leaf nodes in the decision tree D from 1 to N.
-       
-        Args:
-            root : The Root node of the decision tree D.
 
-        Returns:
-            arr  : A list of ordered non-leaf nodes in the decision tree D.
+		Args:
+		    root : The Root node of the decision tree D.
+
+		Returns:
+		    arr  : A list of ordered non-leaf nodes in the decision tree D.
 
 		"""
 
-        # Let arr be a list that records all the non-leaf nodes in the current decision tree D.
+		# Let arr be a list that records all the non-leaf nodes in the current decision tree D.
 		arr = []
 
 		# If the current decision tree is empty or has a leaf node at root, return an empty list.
-
 		if root == None or root.val == -1:
 			return arr
         
-        # Re-order the non-leaf node by BFS traversing the decision tree D
+		# Re-order the non-leaf node by BFS traversing the decision tree D
 		queue = deque([root])
 		while len(queue) > 0:
 			curr = queue.popleft()
@@ -427,8 +431,8 @@ class DecisionTree:
 				queue.append(curr.left)
 			if curr.right != None and curr.right.val != -1:
 				queue.append(curr.right)
-
-        # Return the ordered non-leaf nodes
+				
+		# Return the ordered non-leaf nodes
 		return arr
 
 	def __str__(self):
