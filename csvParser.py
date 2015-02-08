@@ -2,7 +2,9 @@
 """
 author: Kai Huang
 date:   Feb 7th, 2015
+
 """
+
 import csv
 
 class CsvParser:
@@ -18,13 +20,14 @@ class CsvParser:
 		targetAttribute : A vector of the class values in the data set.
 
 	"""
+
 	def __init__(self, filename):
 
 		"""Populate the CsvParser with the attribute names, attribute values, 
 		   and class values in the data set.
 
 		Args:
-		    filename : The filename of the data set to be parsed.
+			filename : The filename of the data set to be parsed.
 
 		"""
 

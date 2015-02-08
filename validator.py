@@ -2,7 +2,9 @@
 """
 author: Kai Huang
 date:   Feb 7th, 2015
+
 """
+
 from csvParser import CsvParser
 
 class Validator:
@@ -45,6 +47,7 @@ class Validator:
 		    The prediction accuracy on data set.
 
 		"""
+
 		# If the decision tree or the data set is empty, return accuracy as 0
 		if root == None or len(self.data) == 0:
 			return 0
@@ -71,6 +74,7 @@ class Validator:
 		    The class value predicted by the decision tree model.
 
 		"""
+
 		# Return the predicted class value if reaches at a leaf node
 		if root.val == -1:
 			return root.label
@@ -78,6 +82,7 @@ class Validator:
 		# If an attribute value is 0, search in the left subtree
 		if row[root.val] == 0:
 			return self.getPredictedValue(root.left, row)
+
 		# If an attribute value is 1, search in the right subtree
 		else:
 			return self.getPredictedValue(root.right, row)
@@ -87,4 +92,5 @@ class Validator:
 		"""Display the prediction accuracy of a given decision tree on the data set.
 
 		"""
+		
 		print "The prediction accuracy on test data = {0:.2f}%".format((self.accuracy) * 100)

@@ -8,6 +8,7 @@ date:   Feb 7th, 2015
         prints the final pruned decision tree with its prediction accuracy on test data.
 
 """
+
 import sys
 from decisionTree import DecisionTree
 from validator import Validator
@@ -19,7 +20,7 @@ def main():
 	  print("-- python --|-- main.py --|-- L --|-- K --|-- training_set.csv --|-- validation_set.csv --|-- test_set.csv --|")
 	  sys.exit(1)
 
-    # The program takes two integer L and K as input to prune the decision tree
+	# The program takes two integer L and K as input to prune the decision tree
 	L = int(sys.argv[1])
 	K = int(sys.argv[2])
 
@@ -35,9 +36,9 @@ def main():
 	#############################################
 	# decisionTree.exportTree('tree.txt') 
 	# print decisionTree      
-    #############################################
+	#############################################
 
-    # Create a validator using test data to calculate the prediction accuracy of a given decision tree 
+	# Create a validator using test data to calculate the prediction accuracy of a given decision tree 
 	validator = Validator(test_set)
 
 	# Calculate the prediction accuracy of the original decision tree on test data
@@ -51,20 +52,20 @@ def main():
 	print "\nPost prunning", '.' * 30
 	print "L =", L, ", K =", K, ", the pruned decision tree is:\n"
 
-    # Prune the original decision tree using L, K and validation data as inputs
+	# Prune the original decision tree using L, K and validation data as inputs
 	decisionTree.pruneTree(L, K, validation_set)
 
 	##############################################
 	# decisionTree.exportTree('pruned_tree.txt')
-    ###############################################
+	##############################################
     
-    # print the decision tree to standard output
+	# print the decision tree to standard output
 	print decisionTree  # Override the __str__ method in DecisionTree class
 
 	# Calculate the prediction accuracy of the pruned decision tree on test data
 	validator.calculateAccuracy(decisionTree.root)
 
-    # Display the prediction accuracy after pruning
+	# Display the prediction accuracy after pruning
 	validator.displayAccuracy()
 
 # Boiler plate function
