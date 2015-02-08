@@ -195,11 +195,12 @@ class DecisionTree:
 		    Otherwise return 0.
 
 		"""
-        # If there is only one training example, return its corresponding class value.
+
+		# If there is only one training example, return its corresponding class value.
 		if len(Target_Attribute) == 1:
 			return Target_Attribute[0]
-        
-        # Otherwise return the most common class value in the training example.
+
+		# Otherwise return the most common class value in the training example.
 		count = 0
 		for i in range(len(Target_Attribute)):
 			if Target_Attribute[i] == 1:
@@ -227,7 +228,8 @@ class DecisionTree:
 			Return a list of tuples (Examples_vi, Target_vi).
 
 		"""
-        # Split the training example by their values for a given attribute.
+
+		# Split the training example by their values for a given attribute.
 		example_v0 = []
 		example_v1 = []
 		targets_v0 = []
@@ -246,13 +248,13 @@ class DecisionTree:
 	def getSplitInfo(self, Examples, attribute):
 
 		""" Calculate the split information for a given attribute.
-        
-        Args: 
-            Examples : Examples are the training examples.
-            attribute: The attribute to be tested.
 
-        Returns:
-            The split information for a given attribute. SplitInfo(S, A)
+		Args: 
+		    Examples : Examples are the training examples.
+		    attribute: The attribute to be tested.
+
+		Returns:
+		    The split information for a given attribute. SplitInfo(S, A)
 
 		"""
 		
