@@ -27,13 +27,14 @@ class Validator:
 		    filename : the filename of the data set
 
 		"""
-        # Parse the csv file that contains the data set
-		csvParser = CsvParser(filename)
-        
-        # Get the targetAttribute value vector from the data set
-		self.targetAttribute = csvParser.targetAttribute
 
-        # Get the attribute value matrix from the data set
+		# Parse the csv file that contains the data set
+		csvParser = CsvParser(filename)
+
+		# Get the targetAttribute value vector from the data set
+		self.targetAttribute = csvParser.targetAttribute
+		
+		# Get the attribute value matrix from the data set
 		self.data = csvParser.data
 
 	def calculateAccuracy(self, root):

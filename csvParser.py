@@ -31,7 +31,7 @@ class CsvParser:
 
 		"""
 
-        # Create a matrix to store the attribute values
+		# Create a matrix to store the attribute values
 		self.data = []
 
 		# Retrieve attribue names and values from the csv file
@@ -46,7 +46,7 @@ class CsvParser:
 			    else: 
 			        self.data.append([int(i) for i in row])
 			    count += 1
-
+			    
 	    # Create a list to record the column index of the attributes
 		self.attributes = range(len(self.attributeNames))
 

@@ -14,8 +14,8 @@ from decisionTree import DecisionTree
 from validator import Validator
     
 def main():
-
-    # Check if the number of command line arguments is correct
+	
+	# Check if the number of command line arguments is correct
 	if len(sys.argv) < 6:
 	  print("-- python --|-- main.py --|-- L --|-- K --|-- training_set.csv --|-- validation_set.csv --|-- test_set.csv --|")
 	  sys.exit(1)
