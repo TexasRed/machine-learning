@@ -47,7 +47,7 @@ class CsvParser:
 			        self.data.append([int(i) for i in row])
 			    count += 1
 			    
-	    # Create a list to record the column index of the attributes
+		# Create a list to record the column index of the attributes
 		self.attributes = range(len(self.attributeNames))
 
 		# Create a list to record the row index of the example instances
