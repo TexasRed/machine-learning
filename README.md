@@ -72,9 +72,9 @@ III. How to Run the Program
 To test the program, you need python 2.7.X installed on your PC.
 
 Open a terminal, go to the current path. Type in:
-
+```python
     main.py L K training_dataset.csv validation_dataset.csv test_dataset.csv
-
+```
 The program will print the prediction accuracy before and after post pruning, as well as the decision tree after post pruning.
 
 Note: 
